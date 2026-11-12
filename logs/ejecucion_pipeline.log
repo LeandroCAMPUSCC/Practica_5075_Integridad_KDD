@@ -1,0 +1,34 @@
+2026-11-12 20:38:35 | INFO     | PasarelaIntegridadSHA256 | === INICIO FASE 1: PASARELA DE INTEGRIDAD CRIPTOGRAFICA SHA-256 ===
+2026-11-12 20:38:35 | INFO     | PasarelaIntegridadSHA256 | Manifiesto de control: Practica_5075_Integridad_KDD/raw_batch_202611\manifest_checksums.sha256
+2026-11-12 20:38:35 | INFO     | PasarelaIntegridadSHA256 | [OK - INTEGRO] transacciones_tienda_norte.csv | SHA-256=34cc61612494703f... -> Promovido a staging\verified\transacciones_tienda_norte.csv
+2026-11-12 20:38:35 | ERROR    | PasarelaIntegridadSHA256 | [ALERTA SEGURIDAD - FIRMA DISCREPANTE] transacciones_tienda_sur.csv | Esperado=0773c2cde0d45d3bfea53ebe6a0ad9f8fd7f04dabd23f55e737f64918128b83c | Calculado=1c47dff4bf34eff59390c211052be942851d158740366ab4ab35159fd9986805 -> Segregado a quarantine\tampered\transacciones_tienda_sur.csv
+2026-11-12 20:38:35 | INFO     | PasarelaIntegridadSHA256 | [OK - INTEGRO] transacciones_tienda_este.csv | SHA-256=645e9de21d1fbe99... -> Promovido a staging\verified\transacciones_tienda_este.csv
+2026-11-12 20:38:35 | INFO     | PasarelaIntegridadSHA256 | Resumen Fase 1 -> Total: 3 | Validados: 2 | Rechazados: 1 | Tasa Integridad: 66.67%
+2026-11-12 20:38:35 | INFO     | PasarelaIntegridadSHA256 | === FIN FASE 1 ===
+
+2026-11-12 20:38:39 | INFO     | PipelineSaneamientoKDD | === INICIO FASE 2: PIPELINE DE LIMPIEZA, COHERENCIA Y DETECCION DE OUTLIERS ===
+2026-11-12 20:38:39 | INFO     | PipelineSaneamientoKDD | Cargado desde staging: transacciones_tienda_este.csv (50 registros)
+2026-11-12 20:38:39 | INFO     | PipelineSaneamientoKDD | Cargado desde staging: transacciones_tienda_norte.csv (50 registros)
+2026-11-12 20:38:39 | WARNING  | PipelineSaneamientoKDD | [CUARENTENA] Origen=transacciones_tienda_este.csv | ID=NULL_ID | Motivo=NULO_EN_COLUMNA_OBLIGATORIA: id_transaccion
+2026-11-12 20:38:39 | WARNING  | PipelineSaneamientoKDD | [CUARENTENA] Origen=transacciones_tienda_este.csv | ID=NULL_ID | Motivo=NULO_EN_COLUMNA_OBLIGATORIA: id_transaccion
+2026-11-12 20:38:39 | WARNING  | PipelineSaneamientoKDD | [CUARENTENA] Origen=transacciones_tienda_este.csv | ID=TXE-20261110-0034 | Motivo=NULO_EN_COLUMNA_OBLIGATORIA: importe_eur
+2026-11-12 20:38:39 | INFO     | PipelineSaneamientoKDD | Imputacion secundaria: 1 nulos en 'categoria' -> 'No_Especificada'
+2026-11-12 20:38:39 | INFO     | PipelineSaneamientoKDD | Imputacion secundaria: 1 nulos en 'metodo_pago' -> 'No_Especificado'
+2026-11-12 20:38:39 | WARNING  | PipelineSaneamientoKDD | [CUARENTENA] Origen=transacciones_tienda_este.csv | ID=TXE-20261110-0039 | Motivo=TIMESTAMP_CORRUPTO_NO_ISO8601
+2026-11-12 20:38:39 | WARNING  | PipelineSaneamientoKDD | [CUARENTENA] Origen=transacciones_tienda_este.csv | ID=TXE-20261110-0010 | Motivo=FECHA_FUERA_DE_RANGO_2026: 2027-08-21 14:22:10
+2026-11-12 20:38:39 | WARNING  | PipelineSaneamientoKDD | [CUARENTENA] Origen=transacciones_tienda_este.csv | ID=TXE-20261110-0022 | Motivo=FECHA_FUERA_DE_RANGO_2026: 2024-02-11 09:10:05
+2026-11-12 20:38:39 | WARNING  | PipelineSaneamientoKDD | [CUARENTENA] Origen=transacciones_tienda_este.csv | ID=TXE-20261110-0012 | Motivo=VIOLACION_DOMINIO: importe_eur <= 0 (-34.5)
+2026-11-12 20:38:39 | WARNING  | PipelineSaneamientoKDD | [CUARENTENA] Origen=transacciones_tienda_este.csv | ID=TXE-20261110-0018 | Motivo=VIOLACION_DOMINIO: importe_eur <= 0 (0.0)
+2026-11-12 20:38:39 | WARNING  | PipelineSaneamientoKDD | [CUARENTENA] Origen=transacciones_tienda_este.csv | ID=TXE-20261110-0025 | Motivo=VIOLACION_DOMINIO: unidades < 1 (0)
+2026-11-12 20:38:39 | WARNING  | PipelineSaneamientoKDD | [CUARENTENA] Origen=transacciones_tienda_este.csv | ID=TXE-20261110-0042 | Motivo=VIOLACION_DOMINIO: unidades < 1 (-3)
+2026-11-12 20:38:39 | INFO     | PipelineSaneamientoKDD | Umbrales IQR importe_eur -> Q1=55.22 | Q3=88.57 | IQR=33.36 | Limites=[5.18, 138.61]
+2026-11-12 20:38:39 | WARNING  | PipelineSaneamientoKDD | [CUARENTENA] Origen=transacciones_tienda_este.csv | ID=TXE-20261110-0016 | Motivo=OUTLIER_ESTADISTICO_IQR: importe_eur=1480.0 fuera de [5.18, 138.61]
+2026-11-12 20:38:39 | WARNING  | PipelineSaneamientoKDD | [CUARENTENA] Origen=transacciones_tienda_este.csv | ID=TXE-20261110-0032 | Motivo=OUTLIER_ESTADISTICO_IQR: importe_eur=2750.9 fuera de [5.18, 138.61]
+2026-11-12 20:38:39 | WARNING  | PipelineSaneamientoKDD | [CUARENTENA] Origen=transacciones_tienda_este.csv | ID=TXE-20261110-0047 | Motivo=OUTLIER_ESTADISTICO_IQR: importe_eur=4120.0 fuera de [5.18, 138.61]
+2026-11-12 20:38:40 | INFO     | PipelineSaneamientoKDD | Dataset limpio exportado: processed\dataset_kdd_listo.csv (87 registros conformes)
+2026-11-12 20:38:40 | INFO     | PipelineSaneamientoKDD | Registros rechazados exportados: quarantine\bad_records.csv (13 registros)
+2026-11-12 20:38:40 | INFO     | PipelineSaneamientoKDD | === FIN FASE 2 ===
+
+2026-11-12 20:38:40 | INFO     | PipelineSaneamientoKDD | === INICIO FASE 3: PERFILADO KDD E INFORME DE CALIDAD (ISO/IEC 25012) ===
+2026-11-12 20:38:40 | INFO     | PipelineSaneamientoKDD | Metricas JSON guardadas en: output_samples\metricas_perfilado.json
+2026-11-12 20:38:40 | INFO     | PipelineSaneamientoKDD | === FIN FASE 3 - PIPELINE COMPLETADO CON EXITO ===

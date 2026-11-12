@@ -1,0 +1,31 @@
+====================================================================
+MANIFIESTO DE CUARENTENA - PIPELINE DE INTEGRIDAD KDD (PRACTICA 5075)
+Fecha de generacion: 2026-11-12 20:38:35
+====================================================================
+
+[1] FICHEROS SEGREGADOS POR FALLO DE INTEGRIDAD CRIPTOGRAFICA (FASE 1)
+--------------------------------------------------------------------
+- Archivo       : transacciones_tienda_sur.csv
+  Estado        : RECHAZADO_TAMPERED
+  SHA-256 Esp.  : 0773c2cde0d45d3bfea53ebe6a0ad9f8fd7f04dabd23f55e737f64918128b83c
+  SHA-256 Calc. : 1c47dff4bf34eff59390c211052be942851d158740366ab4ab35159fd9986805
+  Ubicacion     : quarantine\tampered\transacciones_tienda_sur.csv
+  Motivo        : Alteracion no autorizada o corrupcion en transito.
+
+[2] REGISTROS SEGREGADOS POR REGLAS DE CALIDAD Y OUTLIERS (FASE 2)
+--------------------------------------------------------------------
+Total registros en quarantine/bad_records.csv: 13
+
+01. [transacciones_tienda_este.csv] ID=NULL_ID | TS=2026-11-10 09:18:17 | Importe=102.4 | Unidades=1 -> NULO_EN_COLUMNA_OBLIGATORIA: id_transaccion
+02. [transacciones_tienda_este.csv] ID=NULL_ID | TS=2026-11-10 14:04:56 | Importe=48.25 | Unidades=5 -> NULO_EN_COLUMNA_OBLIGATORIA: id_transaccion
+03. [transacciones_tienda_este.csv] ID=TXE-20261110-0034 | TS=2026-11-10 15:15:21 | Importe=nan | Unidades=3 -> NULO_EN_COLUMNA_OBLIGATORIA: importe_eur
+04. [transacciones_tienda_este.csv] ID=TXE-20261110-0039 | TS=2026-99-99 INVALID_TS | Importe=70.79 | Unidades=5 -> TIMESTAMP_CORRUPTO_NO_ISO8601
+05. [transacciones_tienda_este.csv] ID=TXE-20261110-0010 | TS=2027-08-21 14:22:10 | Importe=58.31 | Unidades=4 -> FECHA_FUERA_DE_RANGO_2026: 2027-08-21 14:22:10
+06. [transacciones_tienda_este.csv] ID=TXE-20261110-0022 | TS=2024-02-11 09:10:05 | Importe=31.23 | Unidades=4 -> FECHA_FUERA_DE_RANGO_2026: 2024-02-11 09:10:05
+07. [transacciones_tienda_este.csv] ID=TXE-20261110-0012 | TS=2026-11-10 11:12:26 | Importe=-34.5 | Unidades=2 -> VIOLACION_DOMINIO: importe_eur <= 0 (-34.5)
+08. [transacciones_tienda_este.csv] ID=TXE-20261110-0018 | TS=2026-11-10 12:29:50 | Importe=0.0 | Unidades=2 -> VIOLACION_DOMINIO: importe_eur <= 0 (0.0)
+09. [transacciones_tienda_este.csv] ID=TXE-20261110-0025 | TS=2026-11-10 13:32:18 | Importe=57.52 | Unidades=0 -> VIOLACION_DOMINIO: unidades < 1 (0)
+10. [transacciones_tienda_este.csv] ID=TXE-20261110-0042 | TS=2026-11-10 16:42:04 | Importe=115.74 | Unidades=-3 -> VIOLACION_DOMINIO: unidades < 1 (-3)
+11. [transacciones_tienda_este.csv] ID=TXE-20261110-0016 | TS=2026-11-10 12:02:54 | Importe=1480.0 | Unidades=1 -> OUTLIER_ESTADISTICO_IQR: importe_eur=1480.0 fuera de [5.18, 138.61]
+12. [transacciones_tienda_este.csv] ID=TXE-20261110-0032 | TS=2026-11-10 14:48:52 | Importe=2750.9 | Unidades=4 -> OUTLIER_ESTADISTICO_IQR: importe_eur=2750.9 fuera de [5.18, 138.61]
+13. [transacciones_tienda_este.csv] ID=TXE-20261110-0047 | TS=2026-11-10 17:48:18 | Importe=4120.0 | Unidades=6 -> OUTLIER_ESTADISTICO_IQR: importe_eur=4120.0 fuera de [5.18, 138.61]

@@ -1,0 +1,39 @@
+{
+    "proyecto": "Practica_5075_Integridad_KDD",
+    "norma_referencia": "ISO/IEC 25012",
+    "fecha_ejecucion": "2026-11-12 20:38:40",
+    "fase_1_integridad_criptografica": {
+        "archivos_totales_lote": 3,
+        "archivos_validados": 2,
+        "archivos_rechazados": 1,
+        "tasa_integridad_criptografica_pct": 66.67
+    },
+    "fase_2_saneamiento_y_cuarentena": {
+        "registros_evaluados_staging": 100,
+        "registros_conformes_finales": 87,
+        "registros_enviados_cuarentena": 13,
+        "registros_imputados_secundarios": 2
+    },
+    "fase_3_indicadores_iso_25012": {
+        "tasa_completitud_origen_staging_pct": 95.0,
+        "tasa_completitud_post_saneamiento_pct": 100.0,
+        "tasa_unicidad_pct": 100.0,
+        "tasa_validez_registros_staging_pct": 87.0
+    },
+    "distribucion_importe_eur_limpio": {
+        "media_eur": 70.99,
+        "mediana_eur": 73.44,
+        "desviacion_estandar_eur": 26.34,
+        "percentil_25_eur": 53.8,
+        "percentil_75_eur": 85.34,
+        "minimo_eur": 12.5,
+        "maximo_eur": 124.47
+    },
+    "distribucion_unidades_limpio": {
+        "media": 3.79,
+        "mediana": 4.0,
+        "desviacion_estandar": 1.69,
+        "minimo": 1,
+        "maximo": 6
+    }
+}
